@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('index', ['selected' => 'Home']);
 });
 Route::get('/kelas', 'ClassController@index');
+Route::get('/profil', 'ProfileController@index');
