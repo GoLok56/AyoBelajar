@@ -27,6 +27,27 @@ class ProfileController extends BaseController
             ['title' => 'Belajar Meningkatkan Profit', 'image' => 'https://inspiratorfreak.com/wp-content/uploads/2017/01/Untitled-1-copy.jpg', 'instructor' => 'Putra', 'date' => '12-11-2012', 'progress' => 70, 'start_date' => '10/10/2010']
         ];
 
-        return view('profil.index', ['selected' => 'Profil', 'user' => $user, 'classes' => $classes]);
+        return view('profil.index', ['selected' => 'Profil', 'menu_selected' => 'Kelas Saya', 'user' => $user, 'classes' => $classes]);
+    }
+
+    function payment() {
+        $user = [
+            'name' => 'Satria Adi Putra',
+            'image' => 'https://www.wowkeren.com/images/photo/derby_romero.jpg'
+        ];
+
+        $classes = [
+            ['title' => 'Belajar Gitar', 'status' => 0],
+            ['title' => 'Piano, from zero to hero', 'status' => 0],
+            ['title' => 'Pintar bermain drum', 'status' => 1],
+            ['title' => '7 Hari Belajar GoLang', 'status' => 0],
+            ['title' => 'NodeJS Sampai Jago', 'status' => 1],
+            ['title' => 'Serba-serbi NodeJS', 'status' => 1],
+            ['title' => 'A-Z Model Bisnis', 'status' => 1],
+            ['title' => 'Lebih dalam tentang Model Pendapatan', 'status' => 0],
+            ['title' => 'Belajar Meningkatkan Profit', 'status' => 0]
+        ];
+
+        return view('profil.payment', ['selected' => 'Profil', 'menu_selected' => 'Status Pembayaran', 'user' => $user, 'classes' => $classes]);
     }
 }

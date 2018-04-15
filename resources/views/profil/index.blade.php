@@ -3,7 +3,7 @@
 @include('templates.header')
 
 <main class="flex row container flex-1">
-    @include('templates.profile_sidebar', ['menu_selected' => 'Kelas Saya' ])
+    @include('templates.profile_sidebar')
 
     <section class="flex-1">
         <ul class="flex column">

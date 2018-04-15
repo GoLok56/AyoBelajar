@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('/kelas', 'ClassController@index');
 Route::get('/profil', 'ProfileController@index');
+Route::get('/profil/pembayaran', 'ProfileController@payment');

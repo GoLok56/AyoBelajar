@@ -280,3 +280,23 @@ footer {
     margin-top: auto;
     padding: 8px;
 }
+
+.status {
+    border-bottom: 1px solid #00e640;
+    margin-left: 16px;
+    margin-top: 16px;
+    padding-bottom: 8px;
+}
+
+.status:first-child {
+    margin-top: 0;
+}
+
+.status > * {
+    margin-top: 4px;
+}
+
+.status button {
+    align-self: flex-start;
+    padding: 8px;
+}
