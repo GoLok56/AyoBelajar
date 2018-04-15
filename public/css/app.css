@@ -71,3 +71,15 @@ header {
 #header ul li:hover a {
     color: white;
 }
+
+footer {
+    border-top: 1px solit #00e640;
+}
+
+#footer {
+    padding: 8px 0;
+}
+
+#footer p {
+    font-size: 0.75em;
+}
