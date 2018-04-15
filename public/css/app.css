@@ -1,3 +1,7 @@
+html, body, body div {
+    height: 100%;
+}
+
 body {
     font-size: 12px;
 }
@@ -12,6 +16,10 @@ h2 {
 
 h3 {
     font-size: 1.5em;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 .container {
@@ -31,8 +39,14 @@ h3 {
     flex-direction: column;
 }
 
+.flex-1 {
+    flex-grow: 1;
+}
+
 .primary-background {
     background: #00e640;
+    border: 1px solid white;
+    color: white;
 }
 
 .primary-color {
@@ -73,13 +87,31 @@ header {
 }
 
 footer {
-    border-top: 1px solit #00e640;
+    border-top: 1px solid #00e640;
 }
 
 #footer {
-    padding: 8px 0;
+    padding: 16px 0;
 }
 
-#footer p {
-    font-size: 0.75em;
+#home {
+    max-width: 40%;
+}
+
+#home p {
+    margin: auto auto 16px auto;
+    font-size: 3em;
+    font-style: italic;
+    text-align: center;
+}
+
+#home button {
+    margin-bottom: auto;
+    padding: 8px;
+}
+
+#home button:hover {
+    background: white;
+    border: 1px solid #00e640;
+    color: #00e640;
 }
