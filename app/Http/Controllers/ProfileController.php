@@ -50,4 +50,14 @@ class ProfileController extends BaseController
 
         return view('profil.payment', ['selected' => 'Profil', 'menu_selected' => 'Status Pembayaran', 'user' => $user, 'classes' => $classes]);
     }
+
+    function edit() {
+        $user = [
+            'name' => 'Satria Adi Putra',
+            'biography' => 'Seorang mahasiswa Universitas Komputer Indonesia jurusan Teknik Informatika',
+            'image' => 'https://www.wowkeren.com/images/photo/derby_romero.jpg'
+        ];
+
+        return view('profil.edit', ['selected' => 'Profil', 'menu_selected' => 'Ubah Profil', 'user' => $user]);
+    }
 }

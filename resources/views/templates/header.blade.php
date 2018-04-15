@@ -14,6 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> 
 <title>AyoBelajar</title>
 </head>
 <body>

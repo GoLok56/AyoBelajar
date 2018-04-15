@@ -2,7 +2,7 @@
 
 @include('templates.header')
 
-<main class="container flex row">
+<main class="container flex row flex-1">
     @include('templates.profile_sidebar', ['menu_selected' => 'Status Pembayaran'])
     
     <section class="flex-1">

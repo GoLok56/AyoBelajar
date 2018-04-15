@@ -2,7 +2,7 @@
     $profile_menus = [
         ['title' => 'Kelas Saya', 'link' => '/profil'],
         ['title' => 'Status Pembayaran', 'link' => '/profil/pembayaran'],
-        ['title' => 'Ubah Profil', 'link' => '/profil'],
+        ['title' => 'Ubah Profil', 'link' => '/profil/ubah'],
     ]
 ?>
 
