@@ -66,6 +66,12 @@ img {
     color: white;
 }
 
+.primary-background:hover {
+    background: white;
+    color: #00e640;
+    border: 1px solid #00e640;
+}
+
 .primary-color {
     color: #00e640;
 }
@@ -136,12 +142,6 @@ footer {
 #home button {
     margin-bottom: auto;
     padding: 8px;
-}
-
-#home button:hover {
-    background: white;
-    border: 1px solid #00e640;
-    color: #00e640;
 }
 
 #kelas section:first-child > * {
@@ -283,12 +283,6 @@ footer {
     padding: 8px;
 }
 
-.class-profile-button:hover {
-    background: white;
-    color: #00e640;
-    border: 1px solid #00e640;
-}
-
 .status {
     border-bottom: 1px solid #00e640;
     margin-left: 16px;
@@ -309,12 +303,6 @@ footer {
     padding: 8px;
 }
 
-.status button:hover {
-    background: white;
-    color: #00e640;
-    border: 1px solid #00e640;
-}
-
 #submit-profile {
     padding: 8px;
 }
@@ -332,12 +320,67 @@ footer {
 }
 
 #submit-profile:hover {
-    background: white;
-    color: #00e640;
     cursor: pointer;
-    border: 1px solid #00e640;
 }
 
 label {
     min-width: 175px;
+}
+
+#class-detail section {
+    width: 100%;
+}
+
+#class-detail section > div {
+    width: 100%;
+}
+
+#class-detail section div div {
+    justify-content: space-between;
+}
+
+#class-detail section img {
+    height: 200px;
+    width: 200px;
+}
+
+#class-detail section > img {
+    margin-left: 0;
+}
+
+#class-detail section > * {
+    margin-left: 8px;
+}
+
+#list-materi {
+    align-self: flex-start;
+    border-bottom: 1px solid #00e640;
+    margin-top: 16px;
+    padding-bottom: 4px;
+}
+
+#ambil-kelas {
+    padding: 8px;
+}
+
+#class-price {
+    margin-top: 4px;
+}
+
+.class-desc {
+    margin-top: 32px;
+}
+
+#class-course > li {
+    margin-top: 8px;
+}
+
+#class-course img {
+    height: 100px;
+    width: 100px;
+}
+
+#class-course p {
+    font-size: 1.25em;
+    margin: auto 8px;
 }

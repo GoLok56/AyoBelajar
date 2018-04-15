@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('index', ['selected' => 'Home']);
 });
 Route::get('/kelas', 'ClassController@index');
+Route::get('/kelas/{id}', 'ClassController@detail');
 Route::get('/profil', 'ProfileController@index');
 Route::get('/profil/pembayaran', 'ProfileController@payment');
 Route::get('/profil/ubah', 'ProfileController@edit');
