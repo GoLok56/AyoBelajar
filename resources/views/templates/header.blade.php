@@ -19,7 +19,7 @@
 <body>
     <header>
         <div class="container flex row" id="header">
-            <h1><a href="/">AyoBelajar</a></h1>
+            <h1 class="bold"><a href="/">AyoBelajar</a></h1>
             <ul>
                 @foreach($menus as $menu)
                     <li><a href="{{ $menu['link'] }}">{{ $menu['title'] }}</a></li>

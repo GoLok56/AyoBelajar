@@ -1,9 +1,9 @@
-html, body, body div {
+html, body, body > div {
     height: 100%;
 }
 
 body {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 h1 {
@@ -22,8 +22,12 @@ button:hover {
     cursor: pointer;
 }
 
+a {
+    font-size: 1.25em;
+}
+
 .container {
-    max-width: 90%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -43,6 +47,10 @@ button:hover {
     flex-grow: 1;
 }
 
+.flex-2 {
+    flex-grow: 2;
+}
+
 .primary-background {
     background: #00e640;
     border: 1px solid white;
@@ -53,8 +61,17 @@ button:hover {
     color: #00e640;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: lighter;
+}
+
 header {
     border-bottom: 1px solid #00e640;
+    margin-bottom: 16px;
 }
 
 #header {
@@ -88,6 +105,7 @@ header {
 
 footer {
     border-top: 1px solid #00e640;
+    margin-top: 16px;
 }
 
 #footer {
@@ -114,4 +132,85 @@ footer {
     background: white;
     border: 1px solid #00e640;
     color: #00e640;
+}
+
+#kelas section:first-child > * {
+    margin-top: 16px;
+}
+
+#kelas section:last-child {
+    margin-left: 16px;
+}
+
+.option ul li {
+    margin-top: 16px;
+}
+
+.option ul li:first-child {
+    margin-top: 8px;
+}
+
+.option ul li a:hover {
+    color: #00e640;
+}
+
+.option-header {
+    padding: 8px 32px 8px 8px;
+}
+
+#search-box button {
+    border: 1px solid #00e640;
+    padding: 8px;
+}
+
+#search-box button:hover {
+    background: white;
+    color: #00e640;
+}
+
+#class-list > * {
+    margin-top: 8px;
+}
+
+.class-header {
+    border-bottom: 1px solid #00e640;
+    justify-content: space-between;
+    padding-bottom: 4px;
+}
+
+.class-more:hover {
+    color: #00e640;
+}
+
+#class-cards {
+    margin-top: 8px;
+}
+
+.class-card {
+    align-content: flex-start;
+    margin-left: 8px;
+}
+
+.class-card:first-child {
+    margin-left: 0;
+}
+
+.class-card p {
+    margin-top: 4px;
+}
+
+.class-img-holder {
+    width: 100%;
+    height: 200px;
+}
+
+.class-card img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.class-name {
+    font-size: 1.25em;
+    margin-top: 8px;
 }
