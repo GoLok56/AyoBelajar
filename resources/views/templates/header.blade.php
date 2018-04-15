@@ -22,7 +22,7 @@
             <h1 class="bold"><a href="/">AyoBelajar</a></h1>
             <ul>
                 @foreach($menus as $menu)
-                    <li><a href="{{ $menu['link'] }}">{{ $menu['title'] }}</a></li>
+                    <li><a href="{{ $menu['link'] }}" class="{{ $selected == $menu['title'] ? 'selected' : '' }}">{{ $menu['title'] }}</a></li>
                 @endforeach
             </ul>
         </div>

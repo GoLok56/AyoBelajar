@@ -1,12 +1,5 @@
 <?php
 
-    $sort_options = [
-        ['title' => 'Yang Terbaru', 'link' => '#'],
-        ['title' => 'Yang Terlama', 'link' => '#'],
-        ['title' => 'Yang Termurah', 'link' => '#'],
-        ['title' => 'Yang Termahal', 'link' => '#']
-    ];
-
     $category_options = [
         ['title' => 'Musik', 'link' => '#'],
         ['title' => 'Teknologi', 'link' => '#'],
@@ -44,15 +37,6 @@
             <button class="primary-background">Cari</button>
         </div>
 
-        <div class="option">
-            <h2 class="option-header primary-background">Urutkan</h2>
-            <ul class="flex column">
-                @foreach($sort_options as $option)
-                    <li><a href="{{ $option['link'] }}">{{ $option['title'] }}</a></li>
-                @endforeach
-            </ul>
-        </div>
-        
         <div class="option">
             <h2 class="option-header primary-background">Kategori</h2>
             <ul class="flex column">

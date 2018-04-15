@@ -10,6 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class ClassController extends BaseController
 {
     function index() {
-        return view('kelas.index');
+        return view('kelas.index', ['selected' => 'Kelas']);
     }
 }

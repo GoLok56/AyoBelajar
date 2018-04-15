@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index', ['selected' => 'Home']);
 });
 Route::get('/kelas', 'ClassController@index');
