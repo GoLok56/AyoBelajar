@@ -13,7 +13,7 @@
     
 
     <main class="flex column flex-1">
-        <form action="/login" class="flex column">
+        <form action="/login" class="flex column" method="post">
             <div class="flex row">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" placeholder="example@email.com" />
