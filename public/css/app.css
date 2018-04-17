@@ -139,9 +139,10 @@ footer {
     text-align: center;
 }
 
-#home button {
+#home a {
     margin-bottom: auto;
     padding: 8px;
+    text-align: center;
 }
 
 #kelas section:first-child > * {

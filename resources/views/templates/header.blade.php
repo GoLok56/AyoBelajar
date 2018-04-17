@@ -1,9 +1,17 @@
 <?php
-    $menus = [
-        [ "title" => "Home", "link" => "/" ],
-        [ "title" => "Kelas", "link" => "/kelas" ],
-        [ "title" => "Profil", "link" => "/profil" ]
-    ];
+    $hasLogin = Session::has('login');
+    if($hasLogin) {
+        $menus = [
+            [ "title" => "Home", "link" => "/" ],
+            [ "title" => "Kelas", "link" => "/kelas" ],
+            [ "title" => "Profil", "link" => "/profil" ]
+        ];
+    } else {
+        $menus = [
+            [ "title" => "Home", "link" => "/" ],
+            [ "title" => "Login", "link" => "/login" ]
+        ];
+    }
 ?>
 
 <!doctype html>
