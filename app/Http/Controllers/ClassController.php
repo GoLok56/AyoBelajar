@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kategori;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,11 +11,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class ClassController extends BaseController
 {
     function index() {
-        $category_options = [
-            ['title' => 'Musik', 'link' => '#'],
-            ['title' => 'Teknologi', 'link' => '#'],
-            ['title' => 'Bisnis', 'link' => '#']
-        ];
+        $categories = Kategori::all();
+        
+        $category_options = [];
+        foreach ($categories as $category) {
+            array_push($category_options, ['title' => $category->nama, 'link' => "/kelas/$category->nama"]);
+        }
     
         $classes = [
             ['category' => 'Musik', 'link' => '#', 'class' => [
