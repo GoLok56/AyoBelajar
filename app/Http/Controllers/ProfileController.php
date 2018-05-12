@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Pengguna;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends BaseController
 {
     function index() {
-        $user = [
-            'name' => 'Satria Adi Putra',
-            'image' => 'https://www.wowkeren.com/images/photo/derby_romero.jpg'
-        ];
+        $user_photo = '';
+        if(Session::has('user_photo')) $user_photo = Session::get('user_photo');
+
+        $user = ['name' => Session::get('user_name'), 'image' => $user_photo];
 
         $classes = [
             ['title' => 'Belajar Gitar', 'image' => 'https://i2.wp.com/bukubiruku.com/wp-content/uploads/2016/10/gitar-chord-a.jpeg?resize=680%2C383&ssl=1', 'instructor' => 'Satria', 'date' => '12-12-2012', 'progress' => 70, 'start_date' => '10/10/2010'],
@@ -31,10 +31,10 @@ class ProfileController extends BaseController
     }
 
     function payment() {
-        $user = [
-            'name' => 'Satria Adi Putra',
-            'image' => 'https://www.wowkeren.com/images/photo/derby_romero.jpg'
-        ];
+        $user_photo = '';
+        if(Session::has('user_photo')) $user_photo = Session::get('user_photo');
+
+        $user = ['name' => Session::get('user_name'), 'image' => $user_photo];
 
         $classes = [
             ['title' => 'Belajar Gitar', 'status' => 0],
@@ -52,12 +52,26 @@ class ProfileController extends BaseController
     }
 
     function edit() {
+        $user_photo = '';
+        if(Session::has('user_photo')) $user_photo = Session::get('user_photo');
+
         $user = [
-            'name' => 'Satria Adi Putra',
-            'biography' => 'Seorang mahasiswa Universitas Komputer Indonesia jurusan Teknik Informatika',
-            'image' => 'https://www.wowkeren.com/images/photo/derby_romero.jpg'
+            'name' => Session::get('user_name'), 
+            'image' => $user_photo, 
+            'biography' => Session::get('user_biography')
         ];
 
         return view('profil.edit', ['selected' => 'Profil', 'menu_selected' => 'Ubah Profil', 'user' => $user]);
+    }
+
+    function save(Request $req) {
+        $data = $req->all();
+
+        Pengguna::where('email', Session::get('user_email'))
+            ->update(['nama' => $data['nama'], 'biografi' => $data['biografi']]);
+        Session::put('user_name', $data['nama']);
+        Session::put('user_biography', $data['biografi']);
+    
+        return redirect('/profil/ubah');    
     }
 }

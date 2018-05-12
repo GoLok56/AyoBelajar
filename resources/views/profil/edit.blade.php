@@ -6,34 +6,18 @@
     @include('templates.profile_sidebar')
 
     <section id="form-profile">
-        <form action="/profil/simpan" method="post" class="flex column">
-            <div class="flex row">
-                <label for="name">Nama</label>
-                <input type="text" name="name" id="form-name" value="{{ $user['name'] }}" />
+        {{ Form::open(['url' => 'profil/simpan', 'class' => 'flex column']) }}
+            <div class="flex row"> 
+                {{ Form::label('nama', 'Nama') }}
+                {{ Form::text('nama', $user['name'], ['id' => 'nama', 'placeholder' => 'John Doe']) }} 
             </div>
 
             <div class="flex row">
-                <label for="biograpi">Biograpi</label>
-                <textarea name="biograpi" id="form-bio" cols="30" rows="10">{{ $user['biography'] }}</textarea>
+                {{ Form::label('biografi', 'Biografi') }}
+                {{ Form::textarea('biografi', $user['biography'], ['id' => 'biografi', 'placeholder' => 'John Doe', 'cols' => '30', 'row' => '5']) }}
             </div>
-
-            <div class="flex row">
-                <label for="oldpass">Password Lama</label>
-                <input type="password" name="oldpass" id="form-oldpass" />
-            </div>
-
-            <div class="flex row">
-                <label for="newpass">Password Baru</label>
-                <input type="password" name="newpass" id="form-newpass" />
-            </div>
-
-            <div class="flex row">
-                <label for="newpassconfirm">Konfirmasi Password Baru</label>
-                <input type="password" name="newpassconfirm" id="form-newpassconfirm" />
-            </div>
-
             <input type="submit" value="Simpan" id="submit-profile" class="primary-background">
-        </form>
+        {{ Form::close() }}
     </section>
 </main>
 

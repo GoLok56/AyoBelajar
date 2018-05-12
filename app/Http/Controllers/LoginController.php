@@ -23,6 +23,9 @@ class LoginController extends BaseController
                 Session::put('login', 1);
                 Session::put('user_name', $user->nama);
                 Session::put('user_type', $user->tipe);
+                Session::put('user_email', $user->email);
+                Session::put('user_photo', $user->poto_profil);
+                Session::put('user_biography', $user->biografi);
                 return redirect('/');
             } else {
                 return redirect('/login')->with('error', 'Password salah!');

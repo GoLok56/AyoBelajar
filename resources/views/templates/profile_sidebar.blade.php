@@ -8,7 +8,7 @@
 
 <section class="flex column">
     <div class="flex row">
-        <img class="user-image" src="{{ $user['image'] }}" />
+        <img class="user-image" src="{{ $user['image'] == '' ? asset('img/anonym.png') : $user['image'] }}" />
         <p class="user-name">{{ $user['name'] }}</p>
     </div>
 

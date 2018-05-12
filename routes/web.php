@@ -21,6 +21,7 @@ Route::get('/kelas/{id}', 'ClassController@detail');
 Route::get('/profil', 'ProfileController@index');
 Route::get('/profil/pembayaran', 'ProfileController@payment');
 Route::get('/profil/ubah', 'ProfileController@edit');
+Route::post('/profil/simpan', 'ProfileController@save');
 
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
