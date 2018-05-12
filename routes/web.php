@@ -25,5 +25,7 @@ Route::get('/profil/ubah', 'ProfileController@edit');
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 
+Route::get('/logout', 'LoginController@logout');
+
 Route::get('/register', 'RegisterController@index');
 Route::post('/register', 'RegisterController@register');

@@ -4,7 +4,8 @@
         $menus = [
             [ "title" => "Home", "link" => "/" ],
             [ "title" => "Kelas", "link" => "/kelas" ],
-            [ "title" => "Profil", "link" => "/profil" ]
+            [ "title" => "Profil", "link" => "/profil" ],
+            [ "title" => "Logout", "link" => "/logout"]
         ];
     } else {
         $menus = [

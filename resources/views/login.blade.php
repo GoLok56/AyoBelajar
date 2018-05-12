@@ -13,18 +13,21 @@
     
 
     <main class="flex column flex-1">
-        <form action="/login" class="flex column" method="post">
+        {{ Form::open(['url' => 'login', 'class' => 'flex column']) }}
             <div class="flex row">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="example@email.com" />
+                {{ Form::label('email', 'Email') }}
+                {{ Form::email('email', '', ['placeholder' => 'example@email.com']) }}
             </div>
             <div class="flex row">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="******" />
+                {{ Form::label('password', 'Password') }}
+                {{ Form::password('password', ['placeholder' => '******']) }}
             </div>
             <a href="/register">Belum punya akun? Daftar disini!</a>
             <input type="submit" value="Login" class="primary-background">
-        </form>
+            @if(session('error'))
+            <p class='error'>{{ session('error') }}</p>
+            @endif
+        {{ Form::close() }}
     </main>
 
 @include('templates.footer')

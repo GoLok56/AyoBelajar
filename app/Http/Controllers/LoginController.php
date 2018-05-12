@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Pengguna;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends BaseController
 {
@@ -13,7 +14,26 @@ class LoginController extends BaseController
         return view('login', ['selected' => 'Login']);
     }
 
-    function login() {
-        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $class]);
+    function login(Request $req) {
+        $data = $req->all();
+        $users = Pengguna::where('email', $data['email'])->get();
+
+        foreach ($users as $user) {
+            if(Hash::check($data['password'], $user->password)) {
+                Session::put('login', 1);
+                Session::put('user_name', $user->nama);
+                Session::put('user_type', $user->tipe);
+                return redirect('/');
+            } else {
+                return redirect('/login')->with('error', 'Password salah!');
+            }
+        }
+
+        return redirect('/login')->with('error', 'Pengguna tidak ditemukan!');
+    }
+
+    function logout() {
+        Session::flush();
+        return redirect('/');
     }
 }

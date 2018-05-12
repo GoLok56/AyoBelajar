@@ -103,11 +103,12 @@ header {
 
 #header ul li {
     display: inline-block;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 #header ul li a {
     font-size: 1.25em;
+    padding: 20px;
 }
 
 #header ul li:hover {
@@ -384,4 +385,8 @@ label {
 #class-course p {
     font-size: 1.25em;
     margin: auto 8px;
+}
+
+.error {
+    color: #ff0033;
 }
