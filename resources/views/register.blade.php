@@ -13,40 +13,40 @@
     
 
     <main class="flex column flex-1">
-        <form action="/register" class="flex column" method="post">
+        {{ Form::open(['url' => 'register', 'class' => 'flex column']) }}
             <div class="flex row">
-                <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" placeholder="John Doe" />
+                {{ Form::label('nama', 'Nama') }}
+                {{ Form::text('nama', '', ['id' => 'nama', 'placeholder' => 'John Doe']) }}
             </div>
 
             <div class="flex row">
-                <label for="biografi">Biografi</label>
-                <textarea name="biografi" id="biografi" cols="30" rows="5"></textarea>
+                {{ Form::label('biografi', 'Biografi') }}
+                {{ Form::textarea('biografi', '', ['id' => 'biografi', 'placeholder' => 'John Doe', 'cols' => '30', 'row' => '5']) }}
             </div>
 
             <div class="flex row">
-                <label for="photo">Poto Profil</label>
-                <input type="file" name="photo" id="photo">
+                {{ Form::label('photo', 'Poto Profil') }}
+                {{ Form::file('photo') }}
             </div>
 
             <div class="flex row">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="example@email.com" />
+                {{ Form::label('email', 'Email') }}
+                {{ Form::email('email', '', ['placeholder' => 'example@email.com']) }}
             </div>
 
             <div class="flex row">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="******" />
+                {{ Form::label('password', 'Password') }}
+                {{ Form::password('password', ['placeholder' => '******']) }}
             </div>
 
             <div class="flex row">
-                <label for="tipe">Tipe</label>
-                <input type="radio" name="tipe" id="tipe1"> Pengajar
-                <input type="radio" name="tipe" id="tipe2"> Pelajar
+                {{ Form::label('tipe', 'Tipe') }}
+                {{ Form::radio('tipe', 'Pelajar', true) }} Pelajar
+                {{ Form::radio('tipe', 'Pengajar', false) }} Pengajar
             </div>
 
             <input type="submit" value="Daftar" class="primary-background">
-        </form>
+        {{ Form::close() }}
     </main>
 
 @include('templates.footer')

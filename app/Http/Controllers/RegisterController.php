@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Pengguna;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends BaseController
 {
@@ -13,7 +13,20 @@ class RegisterController extends BaseController
         return view('register', ['selected' => 'Login']);
     }
 
-    function login() {
-        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $class]);
+    function register(Request $req) {
+        $data = $req->all();
+
+        $photo = '';
+        if($data['photo'] !== null) $photo = $data['photo'];
+
+        Pengguna::create([
+            'nama' => $data['nama'],
+            'biografi' => $data['biografi'],
+            'poto_profil' => $photo,
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'tipe' => $data['tipe']
+        ]);
+        return redirect('/');
     }
 }
