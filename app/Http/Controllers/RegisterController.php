@@ -27,6 +27,6 @@ class RegisterController extends BaseController
             'password' => Hash::make($data['password']),
             'tipe' => $data['tipe']
         ]);
-        return redirect('/');
+        return redirect('/login');
     }
 }
