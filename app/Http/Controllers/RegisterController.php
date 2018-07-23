@@ -16,13 +16,17 @@ class RegisterController extends BaseController
     function register(Request $req) {
         $data = $req->all();
 
-        $photo = '';
-        if($data['photo'] !== null) $photo = $data['photo'];
+        $path = '';
+        $file = $req->file('photo');
+        if($file !== null){ 
+            $path = $file->getClientOriginalName();
+            $file->move('photos/', $path);
+        }
 
         Pengguna::create([
             'nama' => $data['nama'],
             'biografi' => $data['biografi'],
-            'poto_profil' => $photo,
+            'poto_profil' => "photos/$path",
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipe' => $data['tipe']

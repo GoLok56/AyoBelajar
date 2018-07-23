@@ -16,8 +16,9 @@ class LoginController extends BaseController
 
     function login(Request $req) {
         $data = $req->all();
-        $users = Pengguna::where('email', $data['email']);
-
+        
+        $users = Pengguna::where('email', $data['email'])->get();
+        
         foreach ($users as $user) {
             if(Hash::check($data['password'], $user->password)) {
                 Session::put('login', 1);
@@ -26,7 +27,7 @@ class LoginController extends BaseController
                 Session::put('user_type', $user->tipe);
                 Session::put('user_email', $user->email);
                 Session::put('user_photo', $user->poto_profil);
-                Session::put('user_biography', $user->biografi);
+                Session::put('user_biografi', $user->biografi);
                 return redirect('/');
             } else {
                 return redirect('/login')->with('error', 'Password salah!');
