@@ -21,7 +21,7 @@ class CreateTablePengguna extends Migration
             $table->string('poto_profil');
             $table->string('email');
             $table->text('password');
-            $table->enum('tipe', ['Pengajar', 'Pelajar']);
+            $table->enum('tipe', ['Admin', 'Pengajar', 'Pelajar']);
         });
     }
 
