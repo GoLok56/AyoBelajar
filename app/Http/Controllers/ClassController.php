@@ -6,6 +6,7 @@ use Storage;
 use App\Kategori;
 use App\Kelas;
 use App\Pengguna;
+use App\Menu;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,19 @@ class ClassController extends BaseController
     function index() {
         $categories = Kategori::all();
         
-        $teacher_options = [];
-        if (session('user_type') == 'Pengajar') {
-            array_push($teacher_options,  ['title' =>'+ Tambah Kelas', 'link' => "/kelas/tambah"]);
-        } 
+        $userType = session('userType');
 
         $category_options = [];
         $classes = [];
         foreach ($categories as $category) {
-            array_push($category_options, ['title' => $category->nama, 'link' => "/kelas/kategori/$category->id_kategori"]);
+            array_push($category_options, [
+                'title' => $category->nama, 
+                'link' => "/kelas/kategori/$category->id_kategori"
+            ]);
 
-            $class = Kelas::where('id_kategori', '=', $category->id_kategori)->limit(3)->get();
+            $class = Kelas::where('id_kategori', '=', $category->id_kategori)
+                ->limit(3)
+                ->get();
 
             $item_class = [];
             foreach ($class as $item) {
@@ -36,14 +39,20 @@ class ClassController extends BaseController
                     'link' => "/kelas/$item->id_kelas"
                 ]);
             } 
-            array_push($classes, ['category' => $category->nama, 'link' => "/kelas/kategori/$category->id_kategori", "class" => $item_class]);
+
+            array_push($classes, [
+                'category' => $category->nama, 
+                'link' => "/kelas/kategori/$category->id_kategori", 
+                "class" => $item_class
+            ]);
         }
 
         return view('kelas.index', [
             'selected' => 'Kelas', 
             'classes' => $classes, 
             'category_options' => $category_options, 
-            'teacher_options' => $teacher_options
+            'teacher_options' => Menu::getTeacherOption($userType),
+            'category_add' => Menu::getCategoryAdd($userType)
         ]);
     }
 
@@ -73,7 +82,11 @@ class ClassController extends BaseController
         foreach ($categories as $category) {
             $kategori[$category->id_kategori] = $category->nama;
         }
-        return view('kelas.form', ['selected' => 'Kelas', 'categories' => $kategori]);
+
+        return view('kelas.form', [
+            'selected' => 'Kelas', 
+            'categories' => $kategori 
+        ]);
     }
 
     function tambah(Request $req) {
@@ -106,7 +119,7 @@ class ClassController extends BaseController
         $categories = Kategori::all();
 
         $teacher_options = [];
-        if (session('user_type') == 'Pengajar') {
+        if (session('userType') == 'Pengajar' || session('userType') == 'Admin') {
             array_push($teacher_options,  ['title' =>'+ Tambah Kelas', 'link' => "/kelas/tambah"]);
         } 
 

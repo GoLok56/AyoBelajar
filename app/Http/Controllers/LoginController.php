@@ -22,12 +22,12 @@ class LoginController extends BaseController
         foreach ($users as $user) {
             if(Hash::check($data['password'], $user->password)) {
                 Session::put('login', 1);
-                Session::put('user_id', $user->id_pengguna);
-                Session::put('user_name', $user->nama);
-                Session::put('user_type', $user->tipe);
-                Session::put('user_email', $user->email);
-                Session::put('user_photo', $user->poto_profil);
-                Session::put('user_biografi', $user->biografi);
+                Session::put('userid', $user->id_pengguna);
+                Session::put('userName', $user->nama);
+                Session::put('userType', $user->tipe);
+                Session::put('userEmail', $user->email);
+                Session::put('userPhoto', $user->poto_profil);
+                Session::put('userBiografi', $user->biografi);
                 return redirect('/');
             } else {
                 return redirect('/login')->with('error', 'Password salah!');

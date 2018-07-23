@@ -8,6 +8,7 @@
     color: white;
 }
 </style>
+
 <main class="container flex row" id="kelas">
     <section class="flex column">
         <div class="flex row" id="search-box">
@@ -26,6 +27,9 @@
                 @foreach($category_options as $option)
                     <li><a href="{{ $option['link'] }}">{{ $option['title'] }}</a></li>
                 @endforeach
+                @if($category_add)
+                    <li><a href="/kategori/tambah">+ Tambah Kategori</a></li>
+                @endif
             </ul>      
         </div>
     </section>
