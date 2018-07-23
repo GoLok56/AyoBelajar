@@ -200,7 +200,8 @@ footer {
 
 .class-card {
     align-content: flex-start;
-    margin-left: 8px;
+    flex-basis: 33%;
+    max-width: 33%;
 }
 
 .class-card:hover {

@@ -11,4 +11,8 @@ class Pengguna extends Model
     public $timestamps = false;
 
     protected $fillable = ['nama', 'biografi', 'poto_profil', 'email', 'password', 'tipe'];
+
+    public function kelas() {
+        return $this->hasMany("App\Kelas");
+    }
 }

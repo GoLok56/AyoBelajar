@@ -4,7 +4,7 @@
 
 <main class="container flex column" id="class-detail">
     <section class="flex row">
-        <img src="{{ $class['image'] }}" />
+        <img src="{{ asset($class['image']) }}" />
         <div class="flex column">
             <div class="flex row">
                 <div class="flex column">

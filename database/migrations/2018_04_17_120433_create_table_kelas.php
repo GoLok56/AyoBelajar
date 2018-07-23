@@ -21,8 +21,8 @@ class CreateTableKelas extends Migration
             $table->integer('harga');
             $table->date('tanggal_dibuat');
             $table->string('poto');
-            $table->integer('id_pengguna')->unique()->unsigned();
-            $table->integer('id_kategori')->unique()->unsigned();
+            $table->integer('id_pengguna')->unsigned();
+            $table->integer('id_kategori')->unsigned();
 
             $table->foreign('id_pengguna')
                 ->references('id_pengguna')

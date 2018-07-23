@@ -16,11 +16,12 @@ class LoginController extends BaseController
 
     function login(Request $req) {
         $data = $req->all();
-        $users = Pengguna::where('email', $data['email'])->get();
+        $users = Pengguna::where('email', $data['email']);
 
         foreach ($users as $user) {
             if(Hash::check($data['password'], $user->password)) {
                 Session::put('login', 1);
+                Session::put('user_id', $user->id_pengguna);
                 Session::put('user_name', $user->nama);
                 Session::put('user_type', $user->tipe);
                 Session::put('user_email', $user->email);

@@ -7,6 +7,9 @@
     border: 1px solid white;
     color: white;
 }
+.wrap {
+    flex-wrap: wrap;
+}
 </style>
 <main class="container flex row" id="kelas">
     <section class="flex column">
@@ -31,28 +34,17 @@
     </section>
     
     <section class="flex-1">
-        <ul class="flex column" id="class-list">
+        <ul class="flex row wrap" id="class-list">
             @foreach($classes as $class)
-                <li class="flex column">
-                    <div class="flex row class-header">
-                        <h3 class="bold">{{ $class['category'] }}</h3>
-                        <a href="{{ $class['link'] }}" class="class-more">More</a>
-                    </div>
-
-                    <ul class="flex row" id="class-cards">
-                        @foreach($class['class'] as $class_to_show)
-                            <li class="flex-1 flex column class-card">
-                                <a href="{{ $class_to_show['link'] }}">
-                                    <div class="class-img-holder">
-                                        <img src="{{ asset($class_to_show['image']) }}" />
-                                    </div>
-                                    <p class="class-name bold">{{ $class_to_show['title'] }}</p>
-                                    <p>{{ $class_to_show['instructor'] }}</p>
-                                    <p class="light">{{ $class_to_show['date'] }}</p>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
+                <li class="flex-1 flex column class-card">
+                    <a href="{{ $class['link'] }}">
+                        <div class="class-img-holder">
+                            <img src="{{ asset($class['image']) }}" />
+                        </div>
+                        <p class="class-name bold">{{ $class['title'] }}</p>
+                        <p>{{ $class['instructor'] }}</p>
+                        <p class="light">{{ $class['date'] }}</p>
+                    </a>
                 </li>
             @endforeach
         </ul>
