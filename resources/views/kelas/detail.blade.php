@@ -11,7 +11,7 @@
                     <p class="class-name bold">{{ $class->nama }}</p>
                     <p id="class-price">Rp. {{ number_format($class->harga, 0, ',', '.') }}</p>
                 </div>
-                <button class="primary-background" id="ambil-kelas">Ambil Kelas</button>
+                <a class="primary-text" href="/kelas/ambil/{{ $class->id_kelas }}">Ambil Kelas</a>
             </div>
             <p class="class-desc">{{ $class->deskripsi }}</p>
         </div>

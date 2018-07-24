@@ -7,6 +7,7 @@ use App\Kategori;
 use App\Kelas;
 use App\Pengguna;
 use App\Menu;
+use App\KelasPelajar;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,9 @@ class ClassController extends BaseController
 {
     function index() {
         $categories = Kategori::all();
-        
         $userType = session('userType');
 
-        $classes = [];
+        $classes = [];  
         foreach ($categories as $category) {
             $class = Kelas::where('id_kategori', '=', $category->id_kategori)
                 ->limit(3)
@@ -110,5 +110,19 @@ class ClassController extends BaseController
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
+    }
+
+    function ambil($id) {
+        $today = getdate();
+        $created = "$today[year]/$today[mon]/$today[mday]";
+
+        KelasPelajar::create([
+            "id_pengguna" => session('userId'),
+            "id_kelas" => $id,
+            "tanggal_mulai" => $created,
+            "status" => 0
+        ]);
+
+        return redirect('/kelas/detail/' . $id);
     }
 }

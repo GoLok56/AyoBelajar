@@ -16,8 +16,8 @@ class CreateTableKelaspelajar extends Migration
         Schema::create('kelaspelajar', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id_kelas_pelajar');
-            $table->integer('id_pengguna')->unique()->unsigned();
-            $table->integer('id_kelas')->unique()->unsigned();
+            $table->integer('id_pengguna')->unsigned();
+            $table->integer('id_kelas')->unsigned();
             $table->date('tanggal_mulai');
             $table->boolean('status');
 
