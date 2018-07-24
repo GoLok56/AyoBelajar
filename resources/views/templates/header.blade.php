@@ -1,12 +1,8 @@
 <?php
-    $hasLogin = Session::has('login');
-    if($hasLogin) {
-        $menus = [
-            [ "title" => "Home", "link" => "/" ],
-            [ "title" => "Kelas", "link" => "/kelas" ],
-            [ "title" => "Profil", "link" => "/profil" ],
-            [ "title" => "Logout", "link" => "/logout"]
-        ];
+    use App\Menu;
+
+    if(Session::has('login')) {
+        $menus = Menu::get(session('userType'));
     } else {
         $menus = [
             [ "title" => "Home", "link" => "/" ],

@@ -36,3 +36,7 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::get('/register', 'RegisterController@index');
 Route::post('/register', 'RegisterController@register');
+
+Route::get('/admin/backup', 'AdminController@backup');
+Route::get('/admin/restore', 'AdminController@restore');
+Route::post('/admin/restore', 'AdminController@doRestore');
