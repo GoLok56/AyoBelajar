@@ -397,3 +397,10 @@ label {
 .error {
     color: #ff0033;
 }
+
+.option-header{
+    background: #00e640;
+    border: 1px solid white;
+    color: white;
+    margin-top: 16px;
+}

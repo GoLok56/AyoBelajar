@@ -1,64 +1,43 @@
 <div class="flex column">
 
 @include('templates.header')
-<style>
-.option-header{
-    background: #00e640;
-    border: 1px solid white;
-    color: white;
-}
-</style>
 
 <main class="container flex row" id="kelas">
-    <section class="flex column">
-        <div class="flex row" id="search-box">
-            <input type="text" name="search-query" id="search-query" />
-            <button class="primary-background">Cari</button>
-        </div>
-
-        <div class="option flex column">
-            <ul class="flex column">
-                @foreach($teacher_options as $option)
-                    <li><a href="{{ $option['link'] }}">{{ $option['title'] }}</a></li>
-                @endforeach
-            </ul>
-            <h2 class="option-header">Kategori</h2>
-            <ul class="flex column">
-                @foreach($category_options as $option)
-                    <li><a href="{{ $option['link'] }}">{{ $option['title'] }}</a></li>
-                @endforeach
-                @if($category_add)
-                    <li><a href="/kategori/tambah">+ Tambah Kategori</a></li>
-                @endif
-            </ul>      
-        </div>
-    </section>
+    @include('templates.kelas.sidebar');
     
     <section class="flex-1">
         <ul class="flex column" id="class-list">
+            <?php $classList = 0; ?>
             @foreach($classes as $class)
-                <li class="flex column">
-                    <div class="flex row class-header">
-                        <h3 class="bold">{{ $class['category'] }}</h3>
-                        <a href="{{ $class['link'] }}" class="class-more">More</a>
-                    </div>
+                @if (sizeof($class['class']) > 0) 
+                    <?php $classList++; ?>
+                    <li class="flex column">
+                        <div class="flex row class-header">
+                            <h3 class="bold">{{ $class['category'] }}</h3>
+                            <a href="{{ $class['link'] }}" class="class-more">More</a>
+                        </div>
 
-                    <ul class="flex row" id="class-cards">
-                        @foreach($class['class'] as $class_to_show)
-                            <li class="flex-1 flex column class-card">
-                                <a href="{{ $class_to_show['link'] }}">
-                                    <div class="class-img-holder">
-                                        <img src="{{ asset($class_to_show['image']) }}" />
-                                    </div>
-                                    <p class="class-name bold">{{ $class_to_show['title'] }}</p>
-                                    <p>{{ $class_to_show['instructor'] }}</p>
-                                    <p class="light">{{ $class_to_show['date'] }}</p>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
+                        <ul class="flex row" id="class-cards">
+                            @foreach($class['class'] as $class_to_show)
+                                <li class="flex-1 flex column class-card">
+                                    <a href="/kelas/{{ $class_to_show->id_kelas }}">
+                                        <div class="class-img-holder">
+                                            <img src="{{ asset($class_to_show->poto) }}" />
+                                        </div>
+                                        <p class="class-name bold">{{ $class_to_show->nama }}</p>
+                                        <p>{{ $class_to_show->instructor->nama }}</p>
+                                        <p class="light">{{ $class_to_show->tanggal_dibuat }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
             @endforeach
+
+            @if($classList === 0)
+                <p>Belum ada kelas</p>
+            @endif 
         </ul>
     </section>
 </main>

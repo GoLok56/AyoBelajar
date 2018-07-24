@@ -22,7 +22,7 @@ class LoginController extends BaseController
         foreach ($users as $user) {
             if(Hash::check($data['password'], $user->password)) {
                 Session::put('login', 1);
-                Session::put('userid', $user->id_pengguna);
+                Session::put('userId', $user->id_pengguna);
                 Session::put('userName', $user->nama);
                 Session::put('userType', $user->tipe);
                 Session::put('userEmail', $user->email);

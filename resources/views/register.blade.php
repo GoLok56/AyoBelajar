@@ -14,6 +14,7 @@
 
     <main class="flex column flex-1">
         {{ Form::open(['url' => 'register', 'class' => 'flex column']) }}
+            {{ csrf_field() }}
             <div class="flex row">
                 {{ Form::label('nama', 'Nama') }}
                 {{ Form::text('nama', '', ['id' => 'nama', 'placeholder' => 'John Doe']) }}

@@ -13,6 +13,10 @@ class Menu {
                 [ 
                     'title' => '+ Tambah Kelas', 
                     'link' => "/kelas/tambah"
+                ],
+                [
+                    'title' => 'Kelas Saya',
+                    'link' => '/kelas/saya'
                 ]
             ];
         }
