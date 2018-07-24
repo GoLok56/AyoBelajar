@@ -42,20 +42,7 @@ class ClassController extends BaseController
     function detail($id) {
         $class = Kelas::find($id);
 
-        $kelas = [
-            'title' => $class->nama, 
-            'image' => $class->poto, 
-            'instructor' => $class->instructor->nama, 
-            'tanggal_dibuat' => $class->tanggal_dibuat,
-            'price' => $class->harga,
-            'desc' => $class->deskripsi,
-            'courses' => [
-                ['title' => 'Pengenalan Gitar', 'image' => 'https://static.bmdstatic.com/pk/product/medium/YAMAHA-Gitar-Klasik-GL1-Natural-SKU00413628-2016624111115.jpg'],
-                ['title' => 'Pengenalan Gitar', 'image' => 'https://static.bmdstatic.com/pk/product/medium/YAMAHA-Gitar-Klasik-GL1-Natural-SKU00413628-2016624111115.jpg'],
-                ['title' => 'Pengenalan Gitar', 'image' => 'https://static.bmdstatic.com/pk/product/medium/YAMAHA-Gitar-Klasik-GL1-Natural-SKU00413628-2016624111115.jpg'],
-            ]
-        ];
-        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $kelas]);
+        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $class]);
     }
 
     function form() {

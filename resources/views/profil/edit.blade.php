@@ -9,7 +9,7 @@
         {{ Form::open(['url' => 'profil/simpan', 'class' => 'flex column']) }}
             <div class="flex row"> 
                 {{ Form::label('nama', 'Nama') }}
-                {{ Form::text('nama', $user->nama, ['id' => 'nama', 'placeholder' => 'John Doe']) }} 
+                {{ Form::text('nama', $user->namaf, ['id' => 'nama', 'placeholder' => 'John Doe']) }} 
             </div>
 
             <div class="flex row">

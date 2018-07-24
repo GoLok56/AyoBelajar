@@ -19,4 +19,8 @@ class Kelas extends Model
     public function pelajar() {
         return $this->belongsToMany('App\Pengguna', 'kelaspelajar', 'id_kelas', 'id_pengguna');
     }
+
+    public function materi() {
+        return $this->hasMany('App\Materi', 'id_kelas', 'id_kelas');
+    }
 }
