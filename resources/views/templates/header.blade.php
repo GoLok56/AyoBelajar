@@ -17,19 +17,23 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> 
+<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
 <title>AyoBelajar</title>
 </head>
 <body>
     <header>
-        <div class="container flex row" id="header">
-            <h1 class="bold"><a href="/">AyoBelajar</a></h1>
-            <ul>
-                @foreach($menus as $menu)
-                    <li><a href="{{ $menu['link'] }}" class="{{ $selected == $menu['title'] ? 'selected' : '' }}">{{ $menu['title'] }}</a></li>
-                @endforeach
-            </ul>
-        </div>
+        <nav class="red ">
+            <div class="nav-wrapper container">
+                <a href="/" class="brand-logo">AyoBelajar</a>
+                <ul class="right">
+                    @foreach($menus as $menu)
+                        <li class="{{ $selected == $menu['title'] ? 'active' : '' }}">
+                            <a href="{{ $menu['link'] }}">
+                                {{ $menu['title'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </nav>
     </header>
