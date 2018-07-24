@@ -26,6 +26,9 @@ Route::get('/profil/pembayaran', 'ProfileController@payment');
 Route::get('/profil/ubah', 'ProfileController@edit');
 Route::post('/profil/simpan', 'ProfileController@save');
 
+Route::get('/kategori/tambah', 'KategoriController@form');
+Route::post('/kategori/tambah', 'KategoriController@tambah');
+
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 

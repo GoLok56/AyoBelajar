@@ -2,6 +2,11 @@ html, body, body > div {
     height: 100%;
 }
 
+input {
+    padding: 4px;
+    border-radius: 4px;
+}
+
 body {
     font-size: 13px;
     font-family: 'Muli', sans-serif;
@@ -328,6 +333,7 @@ footer {
 
 label {
     min-width: 175px;
+    padding: 6px 0;
 }
 
 #class-detail section {
