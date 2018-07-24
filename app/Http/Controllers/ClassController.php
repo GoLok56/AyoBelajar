@@ -110,4 +110,18 @@ class ClassController extends BaseController
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
     }
+
+    function kelasSaya() {
+        $classes = Kelas::where('id_pengguna', '=', session('userId'))->get();
+        $categories = Kategori::all();
+        $userType = session('userType');
+
+        return view('kelas.list', [
+            'selected' => 'Kelas', 
+            'classes' => $classes, 
+            'categories' => $categories, 
+            'teacher_options' => Menu::getTeacherOption($userType),
+            'category_add' => Menu::getCategoryAdd($userType)
+        ]);
+    }
 }
