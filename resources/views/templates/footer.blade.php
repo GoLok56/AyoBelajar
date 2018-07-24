@@ -4,6 +4,7 @@
         </div>
     </footer>
 
+<script src="{{ asset('js/jquery.css') }}"></script>
 <script src="{{ asset('js/materialize.min.css') }}"></script>
 </body>
 </html>
