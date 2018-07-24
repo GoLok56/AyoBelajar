@@ -13,7 +13,7 @@
     
 
     <main class="flex column flex-1">
-        {{ Form::open(['url' => 'register', 'class' => 'flex column']) }}
+        {{ Form::open(['url' => 'register', 'class' => 'flex column', 'files' => true]) }}
             {{ csrf_field() }}
             <div class="flex row">
                 {{ Form::label('nama', 'Nama') }}

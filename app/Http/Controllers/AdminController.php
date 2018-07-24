@@ -15,4 +15,13 @@ class AdminController extends BaseController
 
         return redirect('/');
     }
+
+    function restore() {
+        return view('admin.restore', [ 'selected' => 'Home' ]);
+    }
+
+    function doRestore(Request $req) {
+
+        dd($req->file('restore'));
+    }
 }
