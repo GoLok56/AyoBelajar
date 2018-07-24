@@ -2,7 +2,7 @@ html, body, body > div {
     height: 100%;
 }
 
-input {
+input, textarea, select {
     padding: 4px;
     border-radius: 4px;
 }
