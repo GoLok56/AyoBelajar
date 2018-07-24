@@ -1,7 +1,9 @@
-    <footer>
-        <div class="container flex row" id="footer">
-            <p>&copy; AyoBelajar 2018</p>
+    <footer class="page-footer grey lighten-3">
+        <div class="footer-copyright">
+            <div class="container">&copy; AyoBelajar 2018</div>
         </div>
     </footer>
+
+<script src="{{ asset('js/materialize.min.css') }}"></script>
 </body>
 </html>
