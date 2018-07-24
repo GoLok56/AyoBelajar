@@ -14,7 +14,7 @@
 
     <main class="flex column flex-1">
         {{ csrf_field() }}
-        {{ Form::open(['url' => '/admin/restore', 'class' => 'flex column']) }}
+        {{ Form::open(['url' => '/admin/restore', 'class' => 'flex column', 'files' => true]) }}
             <div class="flex row">
                 {{ Form::label('restore', 'Backup File') }}
                 {{ Form::file('restore') }}

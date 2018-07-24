@@ -21,7 +21,8 @@ class AdminController extends BaseController
     }
 
     function doRestore(Request $req) {
+        exec('mysql -u root ayobelajar < ' . $req->file('restore')->path());
 
-        dd($req->file('restore'));
+        return redirect('/');
     }
 }
