@@ -13,6 +13,6 @@ class Pengguna extends Model
     protected $fillable = ['nama', 'biografi', 'poto_profil', 'email', 'password', 'tipe'];
 
     public function kelas() {
-        return $this->hasMany("App\Kelas");
+        return $this->belongsToMany("App\Kelas", 'kelaspelajar', 'id_pengguna', 'id_kelas');
     }
 }

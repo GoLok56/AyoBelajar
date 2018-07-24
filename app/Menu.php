@@ -23,6 +23,14 @@ class Menu {
         }
     }
 
+    public static function getProfileMenu() {
+        return [
+            ['title' => 'Kelas Yang Saya Ikuti', 'link' => '/profil'],
+            ['title' => 'Status Pembayaran', 'link' => '/profil/pembayaran'],
+            ['title' => 'Ubah Profil', 'link' => '/profil/ubah'],
+        ];
+    }
+
     public static function getTeacherOption($userType) {
         if ($userType === 'Pengajar' || $userType === 'Admin') { 
             return [

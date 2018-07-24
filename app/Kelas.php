@@ -15,4 +15,8 @@ class Kelas extends Model
     public function instructor() {
         return $this->belongsTo('App\Pengguna', 'id_pengguna', 'id_pengguna');
     }
+
+    public function pelajar() {
+        return $this->belongsToMany('App\Pengguna', 'kelaspelajar', 'id_kelas', 'id_pengguna');
+    }
 }

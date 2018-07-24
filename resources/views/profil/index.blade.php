@@ -3,20 +3,20 @@
 @include('templates.header')
 
 <main class="flex row container flex-1">
-    @include('templates.profile_sidebar')
+    @include('templates.profile.sidebar')
 
     <section class="flex-1">
         <ul class="flex column">
-            @foreach($classes as $class)
+            @foreach($user->kelas as $class)
                 <li class="flex row class-profile">
-                    <img src="{{ $class['image'] }}">
+                    <img src="{{ $class->poto }}">
                     <div class="flex column class-profile-desc">
                         <div class="flex row class-profile-header">
-                            <p class="class-name bold">{{ $class['title'] }}</p>
-                            <p>{{ $class['progress'] }}%</p>
+                            <p class="class-name bold">{{ $class->nama }}</p>
+                            <p>80%</p>
                         </div>
-                        <p>{{ $class['instructor'] }}</p>
-                        <p>{{ $class['start_date'] }}</p>
+                        <p>{{ $class->instructor->nama }}</p>
+                        <p>{{ $class->tanggal_mulai }}</p>
                         <button class="primary-background class-profile-button">Masuk</button>
                     </div>
                 </li>
