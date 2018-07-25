@@ -6,10 +6,6 @@
     @include('templates.kelas.sidebar')
 
     <section class="col s9">
-        <h5>{{ $category }}</h5>
-        @if(sizeof($classes) === 0)
-        <p>Tidak ditemukan</p>
-        @endif
         @foreach($classes as $class)
         <div class="col s4">
             <div class="card small">
@@ -30,10 +26,7 @@
                     <p>{{ $class->tanggal_dibuat }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/kelas/{{ $class->id_kelas }}" class="green-text">Detail</a>
-                    @if($hapus)
-                    <a href="/kelas/hapus/{{ $class->id_kelas }}" class="green-text">Hapus</a>
-                    @endif
+                    <a href="/kelas/{{ $class->id_kelas }}" class="green-text">Lihat Detail</a>
                 </div>
             </div>
         </div>

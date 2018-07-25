@@ -28,13 +28,22 @@ class LoginController extends BaseController
                 Session::put('userEmail', $user->email);
                 Session::put('userPhoto', $user->poto_profil);
                 Session::put('userBiografi', $user->biografi);
-                return redirect('/');
+                return [
+                    'status' => 200,
+                    'message' => 'Berhasil melakukan login!'
+                ];
             } else {
-                return redirect('/login')->with('error', 'Password salah!');
+                return [
+                    'status' => 401,
+                    'message' => 'Password salah!'
+                ];
             }
         }
 
-        return redirect('/login')->with('error', 'Pengguna tidak ditemukan!');
+        return [
+            'status' => 401,
+            'message' => 'Pengguna tidak ditemukan!'
+        ];
     }
 
     function logout() {

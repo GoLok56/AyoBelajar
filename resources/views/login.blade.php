@@ -1,35 +1,62 @@
-<div class="flex column">
+<style>
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}  
+</style>
 
 @include('templates.header')
-    <style> 
-    label { min-width:75px; }
-    main { align-items: center; }
-    main > form { margin: auto; }
-    main > form > * { margin-top: 8px; }
-    main > form > input { padding: 8px; }
-    main > form > input:hover { cursor: pointer; }
-    a { font-size: 0.75em; }
-    </style>
-    
 
-    <main class="flex column flex-1">
-        {{ Form::open(['url' => 'login', 'class' => 'flex column']) }}
-            <div class="flex row">
+<main class="valign-wrapper">
+    <div class="container">
+        {{ Form::open() }}
+            <div class="input-field">
                 {{ Form::label('email', 'Email') }}
-                {{ Form::email('email', '', ['placeholder' => 'example@email.com']) }}
+                {{ Form::email('email', '', ['id' => 'email', 'required' => true]) }}
             </div>
-            <div class="flex row">
+            <div class="input-field">
                 {{ Form::label('password', 'Password') }}
-                {{ Form::password('password', ['placeholder' => '******']) }}
+                {{ Form::password('password', ['id' => 'password', 'required' => true]) }}
             </div>
-            <a href="/register">Belum punya akun? Daftar disini!</a>
-            <input type="submit" value="Login" class="primary-background">
-            @if(session('error'))
-            <p class='error'>{{ session('error') }}</p>
-            @endif
+            <p><a href="/register" class="green-text">Belum punya akun? Daftar disini!</a></p>
+            <button class="btn light-blue accent-2 waves-light waves-effect" id="login">Login</button>
+            <p class='red-text' id="error"></p>
         {{ Form::close() }}
-    </main>
+    </div>
+</main>
 
 @include('templates.footer')
 
-</div>
+<script>
+    $(document).ready(function() {
+        $('#login').click(function() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/login',
+                data: {
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                },
+                success: function(response) {
+                    if (response.status === 200) {
+                        window.location = '/kelas'
+                    } else {
+                        $('#error').html(response.message)
+                    }
+                }
+            })
+        })
+
+        $('form').submit(function(evt) {
+            evt.preventDefault()
+        })
+    })
+</script>

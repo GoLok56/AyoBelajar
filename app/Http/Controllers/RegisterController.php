@@ -19,14 +19,14 @@ class RegisterController extends BaseController
         $path = '';
         $file = $req->file('photo');
         if($file !== null){ 
-            $path = $file->getClientOriginalName();
+            $path = 'photos/' . $data['nama'] . '_' . $file->getClientOriginalName();
             $file->move('photos/', $path);
         }
 
         Pengguna::create([
             'nama' => $data['nama'],
             'biografi' => $data['biografi'],
-            'poto_profil' => "photos/$path",
+            'foto_profil' => "photos/$path",
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipe' => $data['tipe']

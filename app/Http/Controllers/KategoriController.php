@@ -20,6 +20,9 @@ class KategoriController extends BaseController
             "nama" => $data['nama']
         ]);
 
-        return redirect('/kelas');
+        return [
+            'status' => 200,
+            'mmessage' => 'Sukses'
+        ];
     }
 }

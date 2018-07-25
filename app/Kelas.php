@@ -10,7 +10,7 @@ class Kelas extends Model
     protected $primaryKey = 'id_kelas';
     public $timestamps = false;
 
-    protected $fillable = ['nama', 'deskripsi', 'harga', 'tanggal_dibuat', 'poto', 'id_pengguna', 'id_kategori'];
+    protected $fillable = ['nama', 'deskripsi', 'harga', 'tanggal_dibuat', 'foto', 'id_pengguna', 'id_kategori'];
 
     public function instructor() {
         return $this->belongsTo('App\Pengguna', 'id_pengguna', 'id_pengguna');

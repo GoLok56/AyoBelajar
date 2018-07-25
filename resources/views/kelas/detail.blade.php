@@ -11,7 +11,11 @@
                     <p class="class-name bold">{{ $class->nama }}</p>
                     <p id="class-price">Rp. {{ number_format($class->harga, 0, ',', '.') }}</p>
                 </div>
-                <a class="primary-text" href="/kelas/ambil/{{ $class->id_kelas }}">Ambil Kelas</a>
+                @if (!$user->has($class->id_kelas))
+                    <a class="primary-text" href="/kelas/ambil/{{ $class->id_kelas }}">Ambil Kelas</a>
+                @else
+                    <a href="/kelas/materi/{{ $class->id_kelas }}" class="primary-text">Lihat Materi</a>
+                @endif
             </div>
             <p class="class-desc">{{ $class->deskripsi }}</p>
         </div>

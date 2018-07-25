@@ -10,7 +10,7 @@
             @foreach($user->kelas as $class)
                 <li class="flex column status">
                     <p class="class-name bold">{{ $class->nama }}</p>
-                    @if($class->status === 0)
+                    @if($class->pelajar[0]->status === 0)
                         <p>Belum Dibayar</p>
                         <button class="primary-background">Konfirmasi</button>
                     @else

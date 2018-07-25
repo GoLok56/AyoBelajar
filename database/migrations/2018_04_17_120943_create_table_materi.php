@@ -18,6 +18,7 @@ class CreateTableMateri extends Migration
             $table->increments('id_materi');
             $table->string('nama');
             $table->string('video');
+            $table->string('foto');
             $table->integer('id_kelas')->unique()->unsigned();
 
             $table->foreign('id_kelas')

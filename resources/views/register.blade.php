@@ -1,55 +1,69 @@
-<div class="flex column">
+<style>
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
 
-@include('templates.header')
-    <style> 
-    label { min-width:75px; }
-    main { align-items: center; }
-    main > form { margin: auto; }
-    main > form > * { margin-top: 8px; }
-    main > form > input { padding: 8px; }
-    main > form > input:hover { cursor: pointer; }
-    a { font-size: 0.75em; }
-    </style>
-    
+main {
+    flex: 1 0 auto;
+}  
+</style>
 
-    <main class="flex column flex-1">
-        {{ Form::open(['url' => 'register', 'class' => 'flex column', 'files' => true]) }}
+@include('templates.header')    
+
+<main class="valign-wrapper">
+    <div class="container">
+        {{ Form::open(['files' => true]) }}
             {{ csrf_field() }}
-            <div class="flex row">
+            <div class="input-field">
                 {{ Form::label('nama', 'Nama') }}
-                {{ Form::text('nama', '', ['id' => 'nama', 'placeholder' => 'John Doe']) }}
+                {{ Form::text('nama', '', ['id' => 'nama', 'required' => true]) }}
             </div>
 
-            <div class="flex row">
+            <div class="input-field">
                 {{ Form::label('biografi', 'Biografi') }}
-                {{ Form::textarea('biografi', '', ['id' => 'biografi', 'placeholder' => 'John Doe', 'cols' => '30', 'row' => '5']) }}
+                {{ Form::textarea('biografi', '', ['id' => 'biografi', 'class' => 'materialize-textarea', 'required' => true]) }}
             </div>
 
-            <div class="flex row">
-                {{ Form::label('photo', 'Poto Profil') }}
-                {{ Form::file('photo') }}
+            <div class="file-field input-field">
+                <div class="btn green accent-3 waves-light waves-effect">
+                    <span>Foto Profil</span>
+                    {{ Form::file('photo', ['id' => 'photo']) }}
+                </div>
+
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
 
-            <div class="flex row">
+            <div class="input-field">
                 {{ Form::label('email', 'Email') }}
-                {{ Form::email('email', '', ['placeholder' => 'example@email.com']) }}
+                {{ Form::email('email', '', ['required' => true, 'id' => 'email']) }}
             </div>
 
-            <div class="flex row">
+            <div class="input-field">
                 {{ Form::label('password', 'Password') }}
-                {{ Form::password('password', ['placeholder' => '******']) }}
+                {{ Form::password('password', ['required' => true, 'id' => 'password']) }}
             </div>
 
-            <div class="flex row">
-                {{ Form::label('tipe', 'Tipe') }}
-                {{ Form::radio('tipe', 'Pelajar', true) }} Pelajar
-                {{ Form::radio('tipe', 'Pengajar', false) }} Pengajar
-            </div>
+            {{ Form::label('tipe', 'Tipe') }}
+            <p>
+                <label>
+                    {{ Form::radio('tipe', 'Pelajar', true) }}
+                    <span>Pelajar</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    {{ Form::radio('tipe', 'Pengajar', false) }}
+                    <span>Pengajar</span>
+                </label>
+            </p>
 
-            <input type="submit" value="Daftar" class="primary-background">
+            <button class="btn light-blue accent-2 waves-light waves-effect" id="daftar" type="submit">Daftar</button>
         {{ Form::close() }}
-    </main>
+    </div>
+</main>
 
 @include('templates.footer')
-
-</div>

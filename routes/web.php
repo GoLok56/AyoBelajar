@@ -18,10 +18,17 @@ Route::get('/', function () {
 Route::get('/kelas', 'ClassController@index');
 Route::get('/kelas/tambah', 'ClassController@form');
 Route::post('/kelas/tambah', 'ClassController@tambah');
-Route::get('/kelas/saya', 'ClassController@kelasSaya');
+
 Route::get('/kelas/ambil/{id}', 'ClassController@ambil');
-Route::get('/kelas/{id}', 'ClassController@detail');
+Route::get('/kelas/hapus/{id}', 'ClassController@hapus');
+Route::get('/kelas/cari', 'ClassController@cari');
+
+Route::get('/kelas/saya', 'ClassController@kelasSaya');
+Route::get('/kelas/kategori/saya/{id}', 'ClassController@kelasSayaCategory');
+
 Route::get('/kelas/kategori/{category}', 'ClassController@kategori');
+
+Route::get('/kelas/{id}', 'ClassController@detail');
 
 Route::get('/profil', 'ProfileController@index');
 Route::get('/profil/pembayaran', 'ProfileController@payment');

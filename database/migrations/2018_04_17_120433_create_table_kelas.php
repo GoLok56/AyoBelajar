@@ -20,7 +20,7 @@ class CreateTableKelas extends Migration
             $table->text('deskripsi');
             $table->integer('harga');
             $table->date('tanggal_dibuat');
-            $table->string('poto');
+            $table->string('foto');
             $table->integer('id_pengguna')->unsigned();
             $table->integer('id_kategori')->unsigned();
 

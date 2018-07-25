@@ -1,47 +1,56 @@
-<div class="flex column">
-
 @include('templates.header')
 
-<main class="container flex row" id="kelas">
-    @include('templates.kelas.sidebar');
+<br>
+
+<main class="container row">
+    @include('templates.kelas.sidebar')
     
-    <section class="flex-1">
-        <ul class="flex column" id="class-list">
-            <?php $classList = 0; ?>
-            @foreach($classes as $class)
-                @if (sizeof($class['class']) > 0) 
-                    <?php $classList++; ?>
-                    <li class="flex column">
-                        <div class="flex row class-header">
-                            <h3 class="bold">{{ $class['category'] }}</h3>
-                            <a href="{{ $class['link'] }}" class="class-more">More</a>
+    <section class="col s9">
+        <?php $classList = 0; ?>
+        @foreach($classes as $class)
+            @if (sizeof($class['class']) > 0) 
+                <?php $classList++; ?>
+                <h5>{{ $class['category'] }}</h5>
+
+                <div class="row">
+                @foreach($class['class'] as $class_to_show)
+                    <div class="col s4">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ asset($class_to_show->foto) }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">{{ $class_to_show->nama }}<i class="material-icons right">more_vert</i></span>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ $class_to_show->nama }}<i class="material-icons right">close</i></span>
+                                <p>{{ $class_to_show->instructor->nama }}</p>
+                                <p>Rp. {{ number_format($class_to_show->harga) }}</p>
+                                <p>{{ $class_to_show->tanggal_dibuat }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/kelas/{{ $class_to_show->id_kelas }}" class="green-text">Detail</a>
+                                @if($hapus)
+                                <a href="/kelas/hapus/{{ $class_to_show->id_kelas }}" class="green-text">Hapus</a>
+                                @endif
+                            </div>
                         </div>
+                    </div>
+                @endforeach
+                </div>
+                <a href="{{ $class['link'] }}" class="btn waves-effect waves-light light-blue accent-2">More</a>
+            @endif
+        @endforeach
 
-                        <ul class="flex row" id="class-cards">
-                            @foreach($class['class'] as $class_to_show)
-                                <li class="flex-1 flex column class-card">
-                                    <a href="/kelas/{{ $class_to_show->id_kelas }}">
-                                        <div class="class-img-holder">
-                                            <img src="{{ asset($class_to_show->poto) }}" />
-                                        </div>
-                                        <p class="class-name bold">{{ $class_to_show->nama }}</p>
-                                        <p>{{ $class_to_show->instructor->nama }}</p>
-                                        <p class="light">{{ $class_to_show->tanggal_dibuat }}</p>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
-            @endforeach
-
-            @if($classList === 0)
-                <p>Belum ada kelas</p>
-            @endif 
-        </ul>
+        @if($classList === 0)
+            <p>Belum ada kelas</p>
+        @endif 
     </section>
 </main>
 
 @include('templates.footer')
 
-</div>
+<script>
+    $(document).ready(function() {
+    })
+</script>

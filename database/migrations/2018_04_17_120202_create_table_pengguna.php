@@ -18,7 +18,7 @@ class CreateTablePengguna extends Migration
             $table->increments('id_pengguna');
             $table->string('nama');
             $table->text('biografi');
-            $table->string('poto_profil');
+            $table->string('foto_profil');
             $table->string('email');
             $table->text('password');
             $table->enum('tipe', ['Admin', 'Pengajar', 'Pelajar']);

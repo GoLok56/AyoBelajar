@@ -1,30 +1,60 @@
-<div class="flex column">
+<style>
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}  
+</style>
 
 @include('templates.header')
-    <style> 
-    label { min-width:75px; }
-    main { align-items: center; }
-    main > form { margin: auto; }
-    main > form > * { margin-top: 8px; }
-    main > form > input { padding: 8px; }
-    main > form > input:hover { cursor: pointer; }
-    a { font-size: 0.75em; }
-    </style>
-    
 
-    <main class="flex column flex-1">
-        {{ Form::open(['url' => '/kategori/tambah', 'class' => 'flex column']) }}
-            <div class="flex row">
+<main class="valign-wrapper">
+    <div class="container">
+        {{ Form::open() }}
+            <div class="input-field">
+                {{ Form::text('nama', '', ['id' => 'nama', 'required' => true]) }}
                 {{ Form::label('nama', 'Nama') }}
-                {{ Form::text('nama', '', ['placeholder' => 'Nama Kategori']) }}
             </div>
-            <input type="submit" value="Tambah" class="primary-background">
+
+            <button id="tambah" class="btn light-blue accent-2 waves-effect waves-light white-text">Tambah</button>
+
             @if(session('error'))
             <p class='error'>{{ session('error') }}</p>
             @endif
         {{ Form::close() }}
-    </main>
+    </div>
+</main>
 
 @include('templates.footer')
 
-</div>
+<script>
+    $(document).ready(function() {
+        $('#tambah').click(function() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/kategori/tambah',
+                data: {
+                    nama: $('#nama').val()
+                },
+                success: function(response) {
+                    if (response.status === 200) {
+                        window.location = '/'
+                    } else {
+                        $('#error').html(response.message)
+                    }
+                }
+            })
+        })
+
+        $('form').submit(function(evt) {
+            evt.preventDefault()
+        })
+    })
+</script>

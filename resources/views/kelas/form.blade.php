@@ -1,47 +1,61 @@
-<div class="flex column">
+<style>
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}  
+</style>
 
 @include('templates.header')
-<style>
-label { min-width:75px; }
-main { align-items: center; }
-main > form { margin: auto; }
-main > form > * { margin-top: 8px; }
-main > form > input { padding: 8px; }
-main > form > input:hover { cursor: pointer; }
-a { font-size: 0.75em; }
-</style>
-<main class="container flex row" id="kelas">
-    {{ Form::open(['url' => 'kelas/tambah', 'class' => 'flex column', 'files' => true]) }}
-        {{ csrf_field() }}
-        <div class="flex row">
-            {{ Form::label('nama', 'Nama') }}
-            {{ Form::text('nama', '', ['id' => 'nama', 'placeholder' => 'Nama Kelas']) }}
-        </div>
 
-        <div class="flex row">
-            {{ Form::label('deskripsi', 'Deskripsi') }}
-            {{ Form::textarea('deskripsi', '', ['id' => 'deskripsi', 'placeholder' => 'Deskripsi', 'cols' => '30', 'row' => '5']) }}
-        </div>
+<main class="valign-wrapper">
+    <div class="container">
+        {{ Form::open(['url' => '/kelas/tambah', 'files' => true]) }}
+            {{ csrf_field() }}
+            <div class="input-field">
+                {{ Form::label('nama', 'Nama') }}
+                {{ Form::text('nama', '', ['id' => 'nama', 'required' => true]) }}
+            </div>
 
-        <div class="flex row">
-            {{ Form::label('harga', 'Harga') }}
-            {{ Form::number('harga', '', ['id' => 'harga', 'placeholder' => '100000']) }}
-        </div>
+            <div class="input-field">
+                {{ Form::label('deskripsi', 'Deskripsi') }}
+                {{ Form::textarea('deskripsi', '', ['id' => 'deskripsi', 'class' => 'materialize-textarea', 'required' => true]) }}
+            </div>
 
-        <div class="flex row">
-            {{ Form::label('photo', 'Poto Kelas') }}
-            {{ Form::file('photo') }}
-        </div>
+            <div class="input-field">
+                {{ Form::label('harga', 'Harga') }}
+                {{ Form::number('harga', '', ['id' => 'harga', 'required' => true]) }}
+            </div>
 
-        <div class="flex row">
-            {{ Form::label('kategori', 'Kategori') }}
-            {{ Form::select('kategori', $categories, '', ['id' => 'kategori']) }}
-        </div>
+            <div class="file-field input-field">
+                <div class="btn green accent-3 waves-light waves-effect">
+                    <span>Foto Kelas</span>
+                    {{ Form::file('photo') }}
+                </div>
 
-        <input type="submit" value="Simpan" class="primary-background">
-    {{ Form::close() }}
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+
+            <div class="input-field">
+                {{ Form::select('kategori', $categories, '', ['id' => 'kategori']) }}
+                {{ Form::label('kategori', 'Kategori') }}
+            </div>
+
+            <button class="btn light-blue accent-2 waves-light waves-effect" type="submit">Simpan</button>
+        {{ Form::close() }}
+    </div>
 </main>
 
 @include('templates.footer')
 
-</div>
+<script>
+    $(document).ready(function() {
+        $('select').formSelect()
+    })
+</script>
