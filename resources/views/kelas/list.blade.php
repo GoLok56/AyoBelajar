@@ -30,9 +30,16 @@
                     <p>{{ $class->tanggal_dibuat }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/kelas/{{ $class->id_kelas }}" class="green-text">Detail</a>
-                    @if($hapus)
+                    @if($category === session('userName'))
+                    <a href="/kelas/materi/{{ $class->id_kelas }}" class="green-text">Tambah Materi</a>
+                    @elseif($hapus && $class->id_pengguna === session('userId'))
+                    <a href="/kelas/ubah/{{ $class->id_kelas }}" class="green-text">Ubah</a>
                     <a href="/kelas/hapus/{{ $class->id_kelas }}" class="green-text">Hapus</a>
+                    @elseif(@hapus)
+                    <a href="/kelas/{{ $class->id_kelas }}" class="green-text">Detail</a>
+                    <a href="/kelas/hapus/{{ $class->id_kelas }}" class="green-text">Hapus</a>
+                    @else
+                    <a href="/kelas/{{ $class->id_kelas }}" class="green-text">Detail</a>
                     @endif
                 </div>
             </div>

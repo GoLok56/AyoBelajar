@@ -29,9 +29,14 @@
                                 <p>{{ $class_to_show->tanggal_dibuat }}</p>
                             </div>
                             <div class="card-action">
-                                <a href="/kelas/{{ $class_to_show->id_kelas }}" class="green-text">Detail</a>
-                                @if($hapus)
+                                @if($hapus && $class_to_show->id_pengguna === session('userId'))
+                                <a href="/kelas/ubah/{{ $class_to_show->id_kelas }}" class="green-text">Ubah</a>
                                 <a href="/kelas/hapus/{{ $class_to_show->id_kelas }}" class="green-text">Hapus</a>
+                                @elseif(@hapus)
+                                <a href="/kelas/{{ $class_to_show->id_kelas }}" class="green-text">Detail</a>
+                                <a href="/kelas/hapus/{{ $class_to_show->id_kelas }}" class="green-text">Hapus</a>
+                                @else
+                                <a href="/kelas/{{ $class_to_show->id_kelas }}" class="green-text">Detail</a>
                                 @endif
                             </div>
                         </div>

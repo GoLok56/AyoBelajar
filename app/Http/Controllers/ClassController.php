@@ -60,7 +60,7 @@ class ClassController extends BaseController
 
         return view('kelas.form', [
             'selected' => 'Kelas', 
-            'categories' => $kategori 
+            'categories' => $kategori
         ]);
     }
 
@@ -192,6 +192,77 @@ class ClassController extends BaseController
             'category' => 'Query pencarian: ' . $req->input('query'), 
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
+        ]);
+    }
+
+    function ubah($id) {
+        $categories = Kategori::all();
+        $class = Kelas::find($id);
+
+        $kategori = [];
+        foreach ($categories as $category) {
+            $kategori[$category->id_kategori] = $category->nama;
+        }
+
+        return view('kelas.ubah', [
+            'selected' => 'Kelas', 
+            'categories' => $kategori,
+            'class' => $class
+        ]);
+    }
+
+    function update(Request $req) {
+        $data = $req->all();
+
+        $path = '';
+        $file = $req->file('photo');
+        if($file !== null){ 
+            $path = $file->getClientOriginalName();
+            $file->move('photos/', $path);
+            Kelas::find($data['id'])
+                ->update([
+                    'nama' => $data['nama'],
+                    'deskripsi' => $data['deskripsi'],
+                    'foto' => "photos/$path",
+                    'harga' => $data['harga'],
+                    'id_kategori' => $data['kategori']
+                ]);
+        } else {
+            Kelas::find($data['id'])
+                ->update([
+                    'nama' => $data['nama'],
+                    'deskripsi' => $data['deskripsi'],
+                    'harga' => $data['harga'],
+                    'id_kategori' => $data['kategori']
+                ]);
+        }
+
+        return redirect('/kelas');
+    }
+
+    function materi() {
+        $classes = Kelas::where('id_pengguna', '=', session('userId'))
+                ->orderBy('id_kelas', 'desc')
+                ->get();
+        $categories = Kategori::all();
+        $userType = session('userType');
+
+        return view('kelas.list', [
+            'selected' => 'Kelas', 
+            'classes' => $classes, 
+            'categories' => $categories,
+            'hapus' => false,
+            'category' => session('userName'), 
+            'teacher_options' => Menu::getTeacherOption($userType),
+            'category_add' => Menu::getCategoryAdd($userType)
+        ]);
+    }
+
+    function formTambahMateri($id) {
+        $class = Kelas::find($id);
+        return view('kelas.formMateri', [
+            'selected' => 'Kelas',
+            'class' => $class
         ]);
     }
 }

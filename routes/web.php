@@ -22,6 +22,10 @@ Route::post('/kelas/tambah', 'ClassController@tambah');
 Route::get('/kelas/ambil/{id}', 'ClassController@ambil');
 Route::get('/kelas/hapus/{id}', 'ClassController@hapus');
 Route::get('/kelas/cari', 'ClassController@cari');
+Route::get('/kelas/ubah/{id}', 'ClassController@ubah');
+Route::post('/kelas/ubah', 'ClassController@update');
+Route::get('/kelas/materi', 'ClassController@materi');
+Route::get('/kelas/materi/{id}', 'ClassController@formTambahMateri');
 
 Route::get('/kelas/saya', 'ClassController@kelasSaya');
 Route::get('/kelas/kategori/saya/{id}', 'ClassController@kelasSayaCategory');

@@ -41,6 +41,10 @@ class Menu {
                 [
                     'title' => 'Kelas Saya',
                     'link' => '/kelas/saya'
+                ],
+                [
+                    'title' => 'Atur Materi',
+                    'link' => '/kelas/materi' 
                 ]
             ];
         }
