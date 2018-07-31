@@ -16,9 +16,9 @@ class LoginController extends BaseController
 
     function login(Request $req) {
         $data = $req->all();
-        
+
         $users = Pengguna::where('email', $data['email'])->get();
-        
+
         foreach ($users as $user) {
             if(Hash::check($data['password'], $user->password)) {
                 Session::put('login', 1);

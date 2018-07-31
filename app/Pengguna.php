@@ -13,14 +13,14 @@ class Pengguna extends Model
     protected $fillable = ['nama', 'biografi', 'foto_profil', 'email', 'password', 'tipe'];
 
     public function kelas() {
-        return $this->belongsToMany("App\Kelas", 'kelaspelajar', 'id_pengguna', 'id_kelas');
+        return $this->belongsToMany("App\Kelas", 'kelaspelajar', 'id_pengguna', 'id_kelas')->withPivot('tanggal_mulai')->withPivot('status');
     }
 
     public function has($classId) {
         foreach ($this->kelas as $class) {
             if ($class->id_kelas === $classId) {
                 return true;
-            } 
+            }
         }
 
         return false;

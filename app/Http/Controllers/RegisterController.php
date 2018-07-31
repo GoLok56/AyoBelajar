@@ -18,7 +18,7 @@ class RegisterController extends BaseController
 
         $path = '';
         $file = $req->file('photo');
-        if($file !== null){ 
+        if($file !== null){
             $path = 'photos/' . $data['nama'] . '_' . $file->getClientOriginalName();
             $file->move('photos/', $path);
         }

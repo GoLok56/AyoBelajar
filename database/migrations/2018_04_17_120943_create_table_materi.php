@@ -19,7 +19,7 @@ class CreateTableMateri extends Migration
             $table->string('nama');
             $table->string('video');
             $table->string('foto');
-            $table->integer('id_kelas')->unique()->unsigned();
+            $table->integer('id_kelas')->unsigned();
 
             $table->foreign('id_kelas')
                 ->references('id_kelas')

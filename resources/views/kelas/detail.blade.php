@@ -4,7 +4,7 @@
 
 <main class="container flex column" id="class-detail">
     <section class="flex row">
-        <img src="{{ asset($class->poto ) }}" />
+        <img src="{{ asset($class->foto ) }}" />
         <div class="flex column">
             <div class="flex row">
                 <div class="flex column">
@@ -12,9 +12,18 @@
                     <p id="class-price">Rp. {{ number_format($class->harga, 0, ',', '.') }}</p>
                 </div>
                 @if (!$user->has($class->id_kelas))
-                    <a class="primary-text" href="/kelas/ambil/{{ $class->id_kelas }}">Ambil Kelas</a>
+                    @if($user->tipe == 'Pelajar')
+                      <a class="primary-text" href="/kelas/ambil/{{ $class->id_kelas }}">Ambil Kelas</a>
+                    @endif
                 @else
-                    <a href="/kelas/materi/{{ $class->id_kelas }}" class="primary-text">Lihat Materi</a>
+                    {{ Form::open(['url' => '/kelas/masuk']) }}
+                      {{ Form::hidden('id_kelas_pelajar', $userKelas->id_kelas_pelajar) }}
+                      @if($userKelas->status == 0)
+                        <a href="/profil/buktipembayaran" class="btn light-blue accent-2 waves-light waves-effect">Konfirmasi Pembayaran</a>
+                      @else
+                        <button class="btn light-blue accent-2 waves-light waves-effect" type="submit" {{$userKelas->status != 2 ? 'disabled' : ''}}>Masuk</button>
+                      @endif
+                    {{ Form::close() }}
                 @endif
             </div>
             <p class="class-desc">{{ $class->deskripsi }}</p>
@@ -28,7 +37,7 @@
         @foreach($class->materi as $course)
             <?php $totalMateri++ ?>
             <li class="flex row">
-                <img src="{{ $course['image'] }}">
+                <img src="{{ asset($course['foto']) }}">
                 <p>{{ $course->nama }}</p>
             </li>
         @endforeach

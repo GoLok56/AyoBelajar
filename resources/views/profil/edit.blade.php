@@ -1,23 +1,25 @@
-<div class="flex column">
-
 @include('templates.header')
 
-<main class="container flex row flex-1">
+<br>
+
+<main class="container row">
     @include('templates.profile.sidebar')
 
-    <section id="form-profile">
-        {{ Form::open(['url' => 'profil/simpan', 'class' => 'flex column']) }}
-            <div class="flex row"> 
-                {{ Form::label('nama', 'Nama') }}
-                {{ Form::text('nama', $user->namaf, ['id' => 'nama', 'placeholder' => 'John Doe']) }} 
-            </div>
+    <section class="col s9">
+        <div class="row">
+          {{ Form::open(['url' => 'profil/simpan']) }}
+              <div class="input-field">
+                  {{ Form::label('nama', 'Nama') }}
+                  {{ Form::text('nama', $user->nama, ['id' => 'nama', 'placeholder' => 'John Doe']) }}
+              </div>
 
-            <div class="flex row">
-                {{ Form::label('biografi', 'Biografi') }}
-                {{ Form::textarea('biografi', $user->biografi, ['id' => 'biografi', 'placeholder' => 'John Doe', 'cols' => '30', 'row' => '5']) }}
-            </div>
-            <input type="submit" value="Simpan" id="submit-profile" class="primary-background">
-        {{ Form::close() }}
+              <div class="input-field">
+                  {{ Form::label('biografi', 'Biografi') }}
+                  {{ Form::textarea('biografi', $user->biografi, ['id' => 'biografi', 'class' => 'materialize-textarea', 'placeholder' => 'John Doe', 'cols' => '30', 'row' => '5']) }}
+              </div>
+              <input type="submit" value="Simpan" id="submit-profile" class="primary-background">
+          {{ Form::close() }}
+        </div>
     </section>
 </main>
 

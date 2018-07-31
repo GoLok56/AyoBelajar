@@ -7,14 +7,14 @@ body {
 
 main {
     flex: 1 0 auto;
-}  
+}
 </style>
 
 @include('templates.header')
 
 <main class="valign-wrapper">
     <div class="container">
-        {{ Form::open(['url' => '/kelas/tambah', 'files' => true]) }}
+        {{ Form::open(['url' => '/kelas/materi', 'files' => true]) }}
             {{ csrf_field() }}
             {{ Form::hidden('id', $class->id_kelas) }}
 

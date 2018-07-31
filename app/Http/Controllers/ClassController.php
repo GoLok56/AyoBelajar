@@ -8,6 +8,8 @@ use App\Kelas;
 use App\Pengguna;
 use App\Menu;
 use App\KelasPelajar;
+use App\MateriKelasPelajar;
+use App\Materi;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class ClassController extends BaseController
         $categories = Kategori::all();
         $userType = session('userType');
 
-        $classes = [];  
+        $classes = [];
         foreach ($categories as $category) {
             $class = Kelas::where('id_kategori', '=', $category->id_kategori)
                 ->orderBy('id_kelas', 'desc')
@@ -25,8 +27,8 @@ class ClassController extends BaseController
                 ->get();
 
             array_push($classes, [
-                'category' => $category->nama, 
-                'link' => "/kelas/kategori/$category->id_kategori", 
+                'category' => $category->nama,
+                'link' => "/kelas/kategori/$category->id_kategori",
                 "class" => $class
             ]);
         }
@@ -34,10 +36,10 @@ class ClassController extends BaseController
         $hapus = $userType === 'Admin';
 
         return view('kelas.index', [
-            'selected' => 'Kelas', 
+            'selected' => 'Kelas',
             'classes' => $classes,
             'hapus' => $hapus,
-            'categories' => $categories, 
+            'categories' => $categories,
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
@@ -46,8 +48,9 @@ class ClassController extends BaseController
     function detail($id) {
         $class = Kelas::find($id);
         $user = Pengguna::find(session('userId'));
-        
-        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $class, 'user' => $user]);
+        $userKelas = KelasPelajar::where('id_pengguna',session('userId'))->where('id_kelas',$class->id_kelas)->first();
+
+        return view('kelas.detail', ['selected' => 'Kelas', 'class' => $class, 'user' => $user, 'userKelas' => $userKelas]);
     }
 
     function form() {
@@ -59,7 +62,7 @@ class ClassController extends BaseController
         }
 
         return view('kelas.form', [
-            'selected' => 'Kelas', 
+            'selected' => 'Kelas',
             'categories' => $kategori
         ]);
     }
@@ -69,7 +72,7 @@ class ClassController extends BaseController
 
         $path = '';
         $file = $req->file('photo');
-        if($file !== null){ 
+        if($file !== null){
             $path = $file->getClientOriginalName();
             $file->move('photos/', $path);
         }
@@ -91,7 +94,7 @@ class ClassController extends BaseController
 
     function kategori($category) {
         $classes = Kelas::where('id_kategori', '=', $category)
-                ->orderBy('id_kelas', 'desc')        
+                ->orderBy('id_kelas', 'desc')
                 ->get();
         $categories = Kategori::all();
         $category = Kategori::find($category);
@@ -100,11 +103,11 @@ class ClassController extends BaseController
         $hapus = $userType === 'Admin';
 
         return view('kelas.list', [
-            'selected' => 'Kelas', 
-            'classes' => $classes, 
+            'selected' => 'Kelas',
+            'classes' => $classes,
             'categories' => $categories,
             'hapus' => $hapus,
-            'category' => $category->nama, 
+            'category' => $category->nama,
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
@@ -114,7 +117,7 @@ class ClassController extends BaseController
         $categories = Kategori::all();
         $userType = session('userType');
 
-        $classes = [];  
+        $classes = [];
         foreach ($categories as $category) {
             $class = Kelas::where('id_kategori', '=', $category->id_kategori)
                 ->where('id_pengguna', '=', session('userId'))
@@ -123,17 +126,17 @@ class ClassController extends BaseController
                 ->get();
 
             array_push($classes, [
-                'category' => $category->nama, 
-                'link' => "/kelas/kategori/saya/$category->id_kategori", 
+                'category' => $category->nama,
+                'link' => "/kelas/kategori/saya/$category->id_kategori",
                 "class" => $class
             ]);
         }
 
         return view('kelas.index', [
-            'selected' => 'Kelas', 
+            'selected' => 'Kelas',
             'classes' => $classes,
             'hapus' => true,
-            'categories' => $categories, 
+            'categories' => $categories,
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
@@ -142,18 +145,18 @@ class ClassController extends BaseController
     function kelasSayaCategory($category) {
         $classes = Kelas::where('id_kategori', '=', $category)
                 ->where('id_pengguna', '=', session('userId'))
-                ->orderBy('id_kelas', 'desc')        
+                ->orderBy('id_kelas', 'desc')
                 ->get();
         $categories = Kategori::all();
         $category = Kategori::find($category);
         $userType = session('userType');
 
         return view('kelas.list', [
-            'selected' => 'Kelas', 
-            'classes' => $classes, 
+            'selected' => 'Kelas',
+            'classes' => $classes,
             'categories' => $categories,
             'hapus' => true,
-            'category' => $category->nama, 
+            'category' => $category->nama,
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
@@ -185,11 +188,11 @@ class ClassController extends BaseController
         $userType = session('userType');
 
         return view('kelas.list', [
-            'selected' => 'Kelas', 
-            'classes' => $classes, 
+            'selected' => 'Kelas',
+            'classes' => $classes,
             'categories' => $categories,
             'hapus' => true,
-            'category' => 'Query pencarian: ' . $req->input('query'), 
+            'category' => 'Query pencarian: ' . $req->input('query'),
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
@@ -205,7 +208,7 @@ class ClassController extends BaseController
         }
 
         return view('kelas.ubah', [
-            'selected' => 'Kelas', 
+            'selected' => 'Kelas',
             'categories' => $kategori,
             'class' => $class
         ]);
@@ -216,7 +219,7 @@ class ClassController extends BaseController
 
         $path = '';
         $file = $req->file('photo');
-        if($file !== null){ 
+        if($file !== null){
             $path = $file->getClientOriginalName();
             $file->move('photos/', $path);
             Kelas::find($data['id'])
@@ -248,21 +251,92 @@ class ClassController extends BaseController
         $userType = session('userType');
 
         return view('kelas.list', [
-            'selected' => 'Kelas', 
-            'classes' => $classes, 
+            'selected' => 'Kelas',
+            'classes' => $classes,
             'categories' => $categories,
             'hapus' => false,
-            'category' => session('userName'), 
+            'category' => session('userName'),
             'teacher_options' => Menu::getTeacherOption($userType),
             'category_add' => Menu::getCategoryAdd($userType)
         ]);
     }
 
+    function mulaiMateri($id) {
+        $materi = MateriKelasPelajar::where('id_kelas_pelajar',$id)->get();
+        $class = KelasPelajar::where('id_kelas_pelajar',$id)->first();
+
+        $categories = Kategori::all();
+        $userType = session('userType');
+
+        return view('kelas.mulaimateri', [
+            'selected' => 'Mulai Materi',
+            'materi' => $materi,
+            'class' => $class,
+            'categories' => $categories,
+            'teacher_options' => Menu::getTeacherOption($userType),
+            'category_add' => Menu::getCategoryAdd($userType)
+        ]);
+    }
+
+    function selesaiMateri(Request $req) {
+      $materi = MateriKelasPelajar::where('id_kelas_pelajar',$req->id_kelas_pelajar)
+      ->where('id_materi',$req->id_materi)
+      ->update(['status' => 1]);
+
+      return redirect('/kelas/mulaimateri/'.$req->id_kelas_pelajar);
+
+    }
     function formTambahMateri($id) {
         $class = Kelas::find($id);
         return view('kelas.formMateri', [
             'selected' => 'Kelas',
             'class' => $class
         ]);
+    }
+
+    function simpanMateri(Request $req) {
+        $data = $req->all();
+
+        $path = '';
+        $pathVideo = '';
+        $file = $req->file('photo');
+        $fileVideo = $req->file('video');
+        if(($file !== null) && ($fileVideo !== null)){
+            $path = $file->getClientOriginalName();
+            $file->move('photos/', $path);
+
+            $pathVideo = $fileVideo->getClientOriginalName();
+            $fileVideo->move('videos/', $pathVideo);
+        }
+
+        $today = getdate();
+        $created = "$today[year]/$today[mon]/$today[mday]";
+
+        Materi::create([
+            'nama' => $data['nama'],
+            'video' => "videos/$pathVideo",
+            'foto' => "photos/$path",
+            'id_kelas' => $data['id']
+        ]);
+        return redirect('/kelas/materi');
+    }
+
+    function masukKelas(Request $req) {
+      $kelasPelajar = KelasPelajar::find($req->id_kelas_pelajar);
+      $materiKelasPelajar = MateriKelasPelajar::where('id_kelas_pelajar', $req->id_kelas_pelajar)->get();
+
+      if(count($materiKelasPelajar) == 0) {
+
+        foreach ($kelasPelajar->materi as $value) {
+            MateriKelasPelajar::create([
+                "id_kelas_pelajar" => $kelasPelajar->id_kelas_pelajar,
+                "id_materi" => $value->id_materi,
+                "status" => 0
+            ]);
+        }
+
+      }
+
+      return redirect('/kelas/mulaimateri/'.$req->id_kelas_pelajar);
     }
 }

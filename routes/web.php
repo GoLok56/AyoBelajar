@@ -24,7 +24,11 @@ Route::get('/kelas/hapus/{id}', 'ClassController@hapus');
 Route::get('/kelas/cari', 'ClassController@cari');
 Route::get('/kelas/ubah/{id}', 'ClassController@ubah');
 Route::post('/kelas/ubah', 'ClassController@update');
+Route::post('/kelas/masuk', 'ClassController@masukKelas');
 Route::get('/kelas/materi', 'ClassController@materi');
+Route::get('/kelas/mulaimateri/{kelas}', 'ClassController@mulaiMateri');
+Route::post('/kelas/materi', 'ClassController@simpanMateri');
+Route::post('/kelas/selesaimateri', 'ClassController@selesaiMateri');
 Route::get('/kelas/materi/{id}', 'ClassController@formTambahMateri');
 
 Route::get('/kelas/saya', 'ClassController@kelasSaya');
@@ -38,6 +42,10 @@ Route::get('/profil', 'ProfileController@index');
 Route::get('/profil/pembayaran', 'ProfileController@payment');
 Route::get('/profil/ubah', 'ProfileController@edit');
 Route::post('/profil/simpan', 'ProfileController@save');
+Route::get('/profil/buktipembayaran', 'ProfileController@buktiPembayaran');
+Route::post('/profil/buktipembayaran', 'ProfileController@simpanBuktiPembayaran');
+Route::post('/profil/konfirmbuktipembayaran', 'ProfileController@konfirmBuktiPembayaran');
+Route::get('/profil/buktipembayaran/list', 'ProfileController@listBuktiPembayaran');
 
 Route::get('/kategori/tambah', 'KategoriController@form');
 Route::post('/kategori/tambah', 'KategoriController@tambah');

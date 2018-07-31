@@ -4,11 +4,11 @@
 
 <main class="container row">
     @include('templates.kelas.sidebar')
-    
+
     <section class="col s9">
         <?php $classList = 0; ?>
         @foreach($classes as $class)
-            @if (sizeof($class['class']) > 0) 
+            @if (sizeof($class['class']) > 0)
                 <?php $classList++; ?>
                 <h5>{{ $class['category'] }}</h5>
 
@@ -49,7 +49,7 @@
 
         @if($classList === 0)
             <p>Belum ada kelas</p>
-        @endif 
+        @endif
     </section>
 </main>
 

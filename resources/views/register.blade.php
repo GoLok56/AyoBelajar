@@ -7,10 +7,10 @@ body {
 
 main {
     flex: 1 0 auto;
-}  
+}
 </style>
 
-@include('templates.header')    
+@include('templates.header')
 
 <main class="valign-wrapper">
     <div class="container">

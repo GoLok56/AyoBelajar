@@ -23,19 +23,28 @@ class Menu {
         }
     }
 
-    public static function getProfileMenu() {
-        return [
-            ['title' => 'Kelas Yang Saya Ikuti', 'link' => '/profil'],
-            ['title' => 'Status Pembayaran', 'link' => '/profil/pembayaran'],
-            ['title' => 'Ubah Profil', 'link' => '/profil/ubah'],
-        ];
+    public static function getProfileMenu($userType) {
+      if ($userType != 'Pelajar') {
+          return [
+              ['title' => 'Status Pembayaran', 'link' => '/profil/pembayaran'],
+              ['title' => 'Bukti Pembayaran', 'link' => '/profil/buktipembayaran/list'],
+              ['title' => 'Ubah Profil', 'link' => '/profil/ubah'],
+          ];
+      }else{
+          return [
+              ['title' => 'Kelas Yang Saya Ikuti', 'link' => '/profil'],
+              ['title' => 'Status Pembayaran', 'link' => '/profil/pembayaran'],
+              ['title' => 'Upload Bukti Pembayaran', 'link' => '/profil/buktipembayaran'],
+              ['title' => 'Ubah Profil', 'link' => '/profil/ubah'],
+          ];
+      }
     }
 
     public static function getTeacherOption($userType) {
-        if ($userType === 'Pengajar' || $userType === 'Admin') { 
+        if ($userType === 'Pengajar' || $userType === 'Admin') {
             return [
-                [ 
-                    'title' => '+ Tambah Kelas', 
+                [
+                    'title' => '+ Tambah Kelas',
                     'link' => "/kelas/tambah"
                 ],
                 [
@@ -44,7 +53,7 @@ class Menu {
                 ],
                 [
                     'title' => 'Atur Materi',
-                    'link' => '/kelas/materi' 
+                    'link' => '/kelas/materi'
                 ]
             ];
         }

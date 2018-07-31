@@ -7,7 +7,7 @@ body {
 
 main {
     flex: 1 0 auto;
-}  
+}
 </style>
 
 @include('templates.header')
